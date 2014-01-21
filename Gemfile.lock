@@ -1,0 +1,18 @@
+PATH
+  remote: .
+  specs:
+    church_metrics_ruby (0.0.1)
+      rest-client
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+    mime-types (2.0)
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  church_metrics_ruby!
