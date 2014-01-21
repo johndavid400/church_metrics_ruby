@@ -12,11 +12,12 @@ module ChurchMetrics
 
     def call_api
       @base_url = @base + @url
-      @resp = RestClient.get @base_url, @auth
-      @json = JSON.parse(@resp)
+      resp = RestClient.get @base_url, @auth
+      @json = JSON.parse(resp)
     end
 
     # universal methods
+    # all and find are the only universal methods for now
 
     def all(options={})
       # Options hash is for pagination
