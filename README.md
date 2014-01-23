@@ -1,6 +1,6 @@
 ## Church Metrics Ruby
 
-#### A ruby wrapper for the Lifechurch.tv Church Metrics API implementation
+#### A ruby wrapper for the [Lifechurch.tv Church Metrics API](https://github.com/lifechurch/churchmetrics-api)
 
 This wrapper creates Ruby methods for the Church Metrics API, holding to the naming of the original API methods.
 
