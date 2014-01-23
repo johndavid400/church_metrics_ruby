@@ -2,43 +2,11 @@
 
 ### A ruby wrapper for the [Lifechurch.tv Church Metrics API](https://github.com/lifechurch/churchmetrics-api)
 
-This wrapper creates Ruby methods for the Church Metrics API, holding to the naming of the original API methods.
-
-#### All methods are namespaced under ChurchMetrics::
-
-#### List of Resources available:
-
-* Campuses
-* Categories
-* Churches
-* Events
-* Projections
-* Records
-* Regions
-* ServiceTimes
-* Users
-
-All resources (except Churches) have the "all" and "find" methods available:
-
-## Examples:
-
-    ChurchMetrics::Records.new.all
-
-    ChurchMetrics::Users.new.find(id)
-
-#### The churches resource has 2 methods: info and weekly_totals
-
-To get information about your church:
-
-    ChurchMetrics::Churches.new.info
-
-To get weekly totals data for a given cateogry:
-
-    ChurchMetrics::Churches.new.weekly_totals(category_id, week={})
+The original API uses curl to get the requests. This gem allows you to use Ruby to make the calls from your app.
 
 ## Setup
 
-#### Add to your project:
+### Add to your project:
 
 First, add to your Gemfile:
 
@@ -48,7 +16,7 @@ Then bundle
 
     bundle
 
-#### Setup API user and key
+### Setup API user and key
 
 Next, add your Lifechurch.tv Church Metrics API user and key to your .bashrc script:
 
@@ -70,7 +38,7 @@ Add the following:
 
 The gem will look to your .bashrc first, then to the Rails config variables - either will work.
 
-#### Test
+#### Verify that it works
 
 Start a rails console:
 
@@ -86,4 +54,52 @@ Make a test call:
 
     ChurchMetrics::Records.new.all # should return a list of all records (paginated)
 
+## Usage
 
+#### All methods are namespaced under ChurchMetrics::
+
+#### List of Resources available:
+
+* Campuses
+* Categories
+* Churches
+* Events
+* Projections
+* Records
+* Regions
+* ServiceTimes
+* Users
+
+#### *all* and *find* are universal methods
+
+All resources (except Churches) have the "all" and "find" methods available:
+
+The *all* method will return a paginated list of all instances of a resource. This result is paginated (default = 30 results), and you can specify the page number you want to view as well as the number of results per page. See the examples below.
+
+The *find* method requires the ID of the resource you are looking for.
+
+### Examples:
+
+    ChurchMetrics::ServiceTimes.new.all
+
+    ChurchMetrics::Records.new.all(:page => 2, :per_page => 100)
+
+    ChurchMetrics::Users.new.find(id)
+
+
+#### The churches resource has 2 methods: info and weekly_totals
+
+To get information about your church:
+
+    ChurchMetrics::Churches.new.info
+
+To get weekly totals data for a given cateogry:
+
+    ChurchMetrics::Churches.new.weekly_totals(category_id, week={})
+
+#### Additionally, the campuses resource has a weekly_totals method
+
+    ChurchMetrics::Campuses.new.weekly_totals(category_id, week={})
+
+
+### more to come
