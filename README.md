@@ -82,9 +82,13 @@ The *find* method requires the ID of the resource you are looking for.
 
     ChurchMetrics::ServiceTimes.new.all
 
+    ChurchMetrics::Records.new.all
+
     ChurchMetrics::Records.new.all(:page => 2, :per_page => 100)
 
     ChurchMetrics::Users.new.find(id)
+
+    ChurchMetrics::Events.new.find(id)
 
 
 #### The churches resource has 2 methods: info and weekly_totals
@@ -93,7 +97,7 @@ To get information about your church:
 
     ChurchMetrics::Churches.new.info
 
-To get weekly totals data for a given cateogry:
+To get weekly totals data for a given category:
 
     ChurchMetrics::Churches.new.weekly_totals(category_id, week={})
 
@@ -102,4 +106,4 @@ To get weekly totals data for a given cateogry:
     ChurchMetrics::Campuses.new.weekly_totals(category_id, week={})
 
 
-### more to come
+### ...more to come
