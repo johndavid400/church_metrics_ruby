@@ -34,8 +34,8 @@ module ChurchMetrics
     private
 
     def set_key
-      @user = ENV["CHURCH_METRICS_USER"]
-      @key = ENV["CHURCH_METRICS_KEY"]
+      @user = ENV["CHURCH_METRICS_USER"] || Rails.configuration.church_metrics_user
+      @key = ENV["CHURCH_METRICS_KEY"] || Rails.configuration.church_metrics_api_key
       @auth = {:"X-Auth-User"=> @user, :"X-Auth-Key"=> @key}
     end
 
