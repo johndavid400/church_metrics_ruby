@@ -16,13 +16,22 @@ module ChurchMetrics
       @json = JSON.parse(resp)
     end
 
+    def get_week(week)
+      if week.present? && week.is_a?(String) && week.to_time.is_a?(Time)
+        week_number = week.to_time.to_i / 604800
+      else
+        week_number = Time.now.to_i / 604800
+      end
+      week = "&week_reference=#{week_number}"
+    end
+
     # universal methods
     # all and find are the only universal methods for now
 
     def all(options={})
       # Options hash is for pagination
       # valid options are "page" and "per_page"
-      @url = "#{@klass}.json" + pagination(options)
+      @url = "#{@klass}.json" + apply_filters(options)
       call_api
     end
 
@@ -39,19 +48,13 @@ module ChurchMetrics
       @auth = {:"X-Auth-User"=> @user, :"X-Auth-Key"=> @key}
     end
 
-    def pagination(options)
-      page = "page=#{options[:page]}" if options[:page].present?
-      per_page = "per_page=#{options[:per_page]}" if options[:per_page].present?
-      if page && per_page
-        pagination = "?#{page}&#{per_page}"
-      elsif page
-        pagination = "?#{page}"
-      elsif per_page
-        pagination = "?#{per_page}"
+    def apply_filters(options)
+      if options.present?
+        filters = "?#{options.to_query}"
       else
-        pagination = ""
+        filters = ""
       end
-      pagination
+      filters
     end
 
   end
